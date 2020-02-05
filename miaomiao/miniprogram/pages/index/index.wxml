@@ -1,0 +1,56 @@
+<!--miniprogram/pages/index/index.wxml-->
+<view class="index">
+  <swiper class="index-swiper" indicator-dots="{{true}}" autoplay="{{true}}" circular="{{true}}">
+    <block wx:for="{{background}}" wx:key="*this">
+      <swiper-item>
+        <view class="swiper-item">{{item}}</view>
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="index-tab">
+    <view class="tab-item active">推荐</view>
+    <view class="tab-item">最新</view>
+  </view>
+  <view class="index-list">
+    <view class="index-list-item">
+      <image mode="aspectFill" src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=4080336754,3825688546&fm=26&gp=0.jpg"></image>
+      <view class="index-list-text">
+        <view>海绵宝宝</view>
+        <view>
+          <text class="iconfont iconlike"></text>
+          <text>100</text>
+        </view>
+      </view>
+    </view>
+    <view class="index-list-item">
+      <image mode="aspectFill" src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=4080336754,3825688546&fm=26&gp=0.jpg"></image>
+      <view class="index-list-text">
+        <view>海绵宝宝</view>
+        <view>
+          <text class="iconfont iconlike"></text>
+          <text>100</text>
+        </view>
+      </view>
+    </view>
+    <view class="index-list-item">
+      <image mode="aspectFill" src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=4080336754,3825688546&fm=26&gp=0.jpg"></image>
+      <view class="index-list-text">
+        <view>海绵宝宝</view>
+        <view>
+          <text class="iconfont iconlike"></text>
+          <text>100</text>
+        </view>
+      </view>
+    </view>
+    <view class="index-list-item">
+      <image mode="aspectFill" src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=4080336754,3825688546&fm=26&gp=0.jpg"></image>
+      <view class="index-list-text">
+        <view>海绵宝宝</view>
+        <view>
+          <text class="iconfont iconlike"></text>
+          <text>100</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
