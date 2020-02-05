@@ -1,2 +1,1 @@
-# EggJsApp
-An egg.js app
+# WeApp
