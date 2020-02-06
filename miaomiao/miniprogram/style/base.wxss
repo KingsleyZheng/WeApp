@@ -1,0 +1,8 @@
+button {
+  border: 1px #409bff solid;
+  color: #409bff;
+  background-color: #fff;
+}
+input {
+  border: 1px #bfbfbf solid;
+}

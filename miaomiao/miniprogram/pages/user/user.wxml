@@ -1,2 +1,29 @@
 <!--miniprogram/pages/user/user.wxml-->
-<text>我的</text>
+<view class="user">
+  <view class="user-info">
+    <image src="{{userPhoto}}"></image>
+    <view wx:if="{{logged}}" >欢迎您，{{nickName}}</view>
+    <button wx:else size="mini" disabled="{{disabled}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">微信登录</button>
+  </view>
+  <!-- 编辑个人信息 -->
+  <view wx:if="{{logged}}" class="user-list">
+    <navigator url="/pages/editUserInfo/editUserInfo" open-type="navigate">
+      <view class="user-list-item">
+        <text>编辑个人信息</text>
+        <text class="iconfont iconnext"></text>
+      </view>
+    </navigator>
+    <navigator url="/pages/friendList/friendList" open-type="navigate">
+      <view class="user-list-item">
+        <text>查看好友列表</text>
+        <text class="iconfont iconnext"></text>
+      </view>
+    </navigator>
+    <navigator url="/pages/detail/detail" open-type="navigate">
+      <view class="user-list-item">
+        <text>个人主页</text>
+        <text class="iconfont iconnext"></text>
+      </view>
+    </navigator>
+  </view>
+</view>

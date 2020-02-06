@@ -1,0 +1,9 @@
+/* miniprogram/pages/editUserInfo/head/head.wxss */
+image {
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto;
+  border: 1px #409bff solid;
+}

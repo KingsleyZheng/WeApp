@@ -1,0 +1,5 @@
+/* components/copyText/copyText.wxss */
+.copyText {
+  display: inline-block;
+  margin: 0 10rpx;
+}
