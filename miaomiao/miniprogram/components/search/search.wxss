@@ -1,0 +1,71 @@
+/* components/search/search.wxss */
+.container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 70rpx;
+  z-index: 999;
+  overflow: hidden;
+}
+.containerFocus {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ccc;
+  z-index: 999;
+  overflow: hidden;
+}
+.search {
+  display: flex;
+  align-items: center;
+  margin: 20rpx;
+}
+.search-text {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  border: 1px #bfbfbf solid;
+  border-radius: 10rpx;
+}
+.search-text input {
+  border: none;
+  flex: 1;
+}
+.search-cancel {
+  margin: 0 10rpx;
+}
+
+.search-history {
+  display: flex;
+  justify-content: space-between;
+  margin: 20rpx;
+}
+.icondelete {
+  font-size: 24px;
+}
+
+.search-history-btn text {
+  border: 1px #bfbfbf solid;
+  padding: 10rpx 20rpx;
+  background-color: #fff;
+  border-radius: 20rpx;
+  margin: 10rpx;
+}
+
+.searchList-item {
+  height: 100rpx;
+  border-bottom: 1px #bfbfbf dashed;
+  padding: 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.searchList-item image {
+  height: 100rpx;
+  width: 100rpx;
+  border-radius: 50%;
+}

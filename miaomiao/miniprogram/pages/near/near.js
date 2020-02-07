@@ -1,11 +1,16 @@
 // miniprogram/pages/near/near.js
+const app = getApp()
+const db = wx.cloud.database()
+const _ = db.command
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    longitude: '',
+    latitude: '',
+    markers: []
   },
 
   /**
@@ -19,14 +24,14 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    this.getLocation()
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getLocation()
   },
 
   /**
@@ -62,5 +67,75 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  getLocation() {
+    wx.getLocation({
+      type: 'gcj02',
+      success: (res)=> {
+        const latitude = res.latitude
+        const longitude = res.longitude
+        this.setData({
+          longitude,
+          latitude
+        })
+        this.getNearUsers()
+      }
+    })
+  },
+  getNearUsers() {
+    db.collection('users').where({
+      location: _.geoNear({
+        geometry: db.Geo.Point(this.data.longitude,this.data.latitude),
+        minDistance: 0,
+        maxDistance: 5000
+      }),
+      isLocation: true
+    }).field({
+      longitude: true,
+      latitude: true,
+      userPhoto: true
+    }).get().then(res => {
+      let data = res.data
+      let result = []
+      if (data.length) {
+        for(let i = 0; i < data.length; i++) {
+          if (data[i].userPhoto.includes('cloud://')) {
+            wx.cloud.getTempFileURL({
+              fileList: [data[i].userPhoto],
+              success: res => {
+                result.push({
+                  iconPath: res.fileList[0].tempFileURL,
+                  id: data[i]._id,
+                  latitude: data[i].latitude,
+                  longitude: data[i].longitude,
+                  width: 30,
+                  height: 30
+                })
+                this.setData({
+                  markers: result
+                })
+              },
+              fail: console.error
+            })
+          }
+          result.push({
+            iconPath: data[i].userPhoto,
+            id: data[i]._id,
+            latitude: data[i].latitude,
+            longitude: data[i].longitude,
+            width: 30,
+            height: 30
+          })
+        }
+        this.setData({
+          markers: result
+        })
+      }
+    })
+  },
+  handleMarkerTap(e) {
+    wx.navigateTo({
+      url: `/pages/detail/detail?userId=${e.markerId}`,
+    })
   }
 })

@@ -1,5 +1,8 @@
 <!--miniprogram/pages/index/index.wxml-->
 <wxs src="../../utils/wordSplit.wxs" module="m1" />
+
+<search />
+
 <view class="index">
   <swiper class="index-swiper" indicator-dots="{{true}}" autoplay="{{true}}" circular="{{true}}">
     <block wx:for="{{background}}" wx:key="*this">

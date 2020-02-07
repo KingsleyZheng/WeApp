@@ -19,7 +19,7 @@
         <text class="iconfont iconnext"></text>
       </view>
     </navigator>
-    <navigator url="/pages/detail/detail" open-type="navigate">
+    <navigator url="{{ '/pages/detail/detail?userId=' + id }}" open-type="navigate">
       <view class="user-list-item">
         <text>个人主页</text>
         <text class="iconfont iconnext"></text>

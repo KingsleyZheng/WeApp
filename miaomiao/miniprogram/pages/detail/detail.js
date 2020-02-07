@@ -8,7 +8,8 @@ Page({
    */
   data: {
     detail: {},
-    isFriend: false
+    isFriend: false,
+    isHidden: false
   },
 
   /**
@@ -21,6 +22,23 @@ Page({
       this.setData({
         detail: res.data
       })
+      let friendList = res.data.friendList
+      if (friendList.includes(app.userInfo._id)) {
+        this.setData({
+          isFriend: true
+        })
+      } else {
+        this.setData({
+          isFriend: false
+        }, () => {
+          if (userId === app.userInfo._id) {
+            this.setData({
+              isFriend: true,
+              isHidden: true
+            })
+          }
+        })
+      }
     })
   },
 

@@ -10,7 +10,10 @@ Page({
     userPhoto: '/images/user/用户头像.png',
     nickName: 'nickName',
     logged: false,
-    disabled: true
+    disabled: true,
+    id: '',
+    longitude: '',
+    latitude: ''
   },
 
   /**
@@ -24,6 +27,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    this.getLocation()
     wx.cloud.callFunction({
       name: 'login',
       data: {}
@@ -37,7 +41,8 @@ Page({
           this.setData({
             userPhoto: app.userInfo.userPhoto,
             nickName: app.userInfo.nickName,
-            logged: true
+            logged: true,
+            id: app.userInfo._id
           })
           this.getMessage()
         } else {
@@ -58,6 +63,7 @@ Page({
     this.setData({
       userPhoto: app.userInfo.userPhoto,
       nickName: app.userInfo.nickName,
+      id: app.userInfo._id
     })
   },
 
@@ -107,7 +113,11 @@ Page({
           weixinNumber: '',
           links: 0,
           time: new Date(),
-          isLocation: true
+          isLocation: true,
+          friendList: [],
+          longitude: this.data.longitude,
+          latitude: this.data.latitude,
+          location: db.Geo.Point(this.data.longitude, this.data.latitude)
         }
       }).then(res => {
         db.collection('users').doc(res._id).get().then(res => {
@@ -116,7 +126,8 @@ Page({
           this.setData({
             userPhoto: app.userInfo.userPhoto,
             nickName: app.userInfo.nickName,
-            logged: true
+            logged: true,
+            id: app.userInfo._id
           })
         })
       }).catch(err => {
@@ -147,6 +158,19 @@ Page({
       },
       onError(err) {
         console.err(err)
+      }
+    })
+  },
+  getLocation () {
+    wx.getLocation({
+      type: 'gcj02',
+      success: (res) => {
+        const latitude = res.latitude
+        const longitude = res.longitude
+        this.setData({
+          longitude,
+          latitude
+        })
       }
     })
   }
