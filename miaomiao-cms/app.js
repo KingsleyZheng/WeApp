@@ -9,6 +9,8 @@ const logger = require('koa-logger')
 const index = require('./routes/index')
 const users = require('./routes/users')
 
+const koaBody = require('koa-body')
+
 // error handler
 onerror(app)
 
@@ -16,6 +18,14 @@ onerror(app)
 app.use(bodyparser({
   enableTypes:['json', 'form', 'text']
 }))
+
+app.use(koaBody({
+  multipart: true,
+  formidable: {
+    maxFileSize: 200*1024*2024
+  }
+}))
+
 app.use(json())
 app.use(logger())
 app.use(require('koa-static')(__dirname + '/public'))

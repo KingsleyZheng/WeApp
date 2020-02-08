@@ -9,5 +9,25 @@
     <label for="">
       上传图片：<input type="file" id="uploadBtn">
     </label>
+    <script>
+      var uploadBtn = document.getElementById('uploadBtn')
+      uploadBtn.onchange = function (ev) {
+        var file = ev.target.files[0]
+        var param = new FormData()
+        param.append('file', file)
+        var config = {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        }
+        axios.post('/uploadBannerImg',param,config)
+        .then(res => {
+          console.log(res.data)
+        })
+        .catch(err => {
+          console.error(err); 
+        })
+      }
+    </script>
   </body>
 </html>

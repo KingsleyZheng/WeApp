@@ -6,8 +6,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #72a8e2;
   margin-top: 90rpx;
+}
+.swiper-item image {
+  height: 100%;
 }
 
 .index-tab {

@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    background: ['demo-text-1', 'demo-text-2', 'demo-text-3'],
+    background: [],
     listData: [],
     current: 'links'
   },
@@ -24,6 +24,7 @@ Page({
    */
   onReady: function () {
     this.getListData()
+    this.getBannerList()
   },
 
   /**
@@ -117,6 +118,14 @@ Page({
     let id = ev.target.dataset.id
     wx.navigateTo({
       url: '/pages/detail/detail?userId=' + id,
+    })
+  },
+  getBannerList() {
+    db.collection('banner').get().then(res => {
+      // console.log(res.data)
+      this.setData({
+        background: res.data
+      })
     })
   }
 })
